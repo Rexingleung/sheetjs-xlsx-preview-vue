@@ -14,7 +14,8 @@ export default {
   name: "App",
   data() {
     return {
-      input: ""
+      input: "",
+      i: 0
     };
   },
 
@@ -38,8 +39,10 @@ export default {
         var workbook = XLSX.read(data, { type: "array" });
         if (callback) callback(workbook);
       }).catch(err => {
-        console.log(err,'err');
-        
+        if(err && this.i < 1){
+          this.i +=1
+          this.preview()
+        }
       })
     },
     // 将表格追加到页面节点展示
